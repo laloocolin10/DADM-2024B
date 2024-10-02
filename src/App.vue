@@ -17,19 +17,34 @@ const saveItem = () =>
    //clean the imput-Limpia el imput
    newItem.value = '';
 };
-
+//visualizacion del formulario
 const newItem = ref('')
-const newItemHighPriority = ref(false)
+const newItemHighPriority = ref(false);
+const editing = ref(false);
+const activateEdition = (activate) =>
+{
+  editing.value=activate;
+};
+
 </script>
 
 <template>
+  <div>
   <h1>
-    <i class="material-icons shopping-cart-icon">local_mall</i>
+    <i class="material-icons shopping-cart-icon">local_mall
+
+    </i>
     {{ header }}
   </h1>
+  <button v-if="editing" class="btn" @click="activateEdition(false)">Cancelar</button>
+  <button v-else class="btn btn-primary" @click="activateEdition(true)">Agregar Articulo</button>
+  </div>
 
   <form
+    class="add-item form"
     v-on:submit.prevent="saveItem"
+    v-if="editing"
+    
   >
     <input v-model="newItem" type="text" placeholder="Agregar un articulo" />
     <!--Caja de seleccion de Prioridad-->
@@ -48,6 +63,7 @@ const newItemHighPriority = ref(false)
   <ul>
     <li v-for="item in items" :key="item.id">𓅓 {{ item.label }}</li>
   </ul>
+  <p v-if="items.length === 0">🥀 NO HAY ELEMENTOS DE TU LISTA 🥀</p>
 </template>
 
 <style scoped>
