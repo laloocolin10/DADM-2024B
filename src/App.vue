@@ -1,18 +1,25 @@
 <script setup>
 import { ref } from 'vue'
-//modelo
+// Modelo
 const header = ref('App lista de compras')
+//items
+//item-model
 const items = ref([
-  { id: '0', label: 'Aceite' },
-  { id: '1', label: 'Papel de baño' },
-  { id: '2', label: '1 cheve' },
-  { id: '3', label: '1 Pañal' },
-  { id: '4', label: '1 Nutella' }
-])
-//realizado en clase
-const newItem = ref('')
-const newItemPriority = ref('low')
+  { id: '0', label: '1 pepino' },
+  { id: '1', label: '1 Aceite para bebe' },
+  { id: '2', label: '1 barra de mantequilla' },
+  { id: '3', label: '1 nutella' }
+]);
+//item-Method
+const saveItem = () =>
+{
+   items.value.push({id: items.value.length + 1, label: newItem.value});
+   //clean the imput-Limpia el imput
+   newItem.value = '';
+};
 
+const newItem = ref('')
+const newItemHighPriority = ref(false)
 </script>
 
 <template>
@@ -20,35 +27,28 @@ const newItemPriority = ref('low')
     <i class="material-icons shopping-cart-icon">local_mall</i>
     {{ header }}
   </h1>
-   <!--Realizado en clase -->
-  <input v-model="newItem" type="next" placeholder="Agregar Articulo" /> {{ newItem }}
-  <!--Radio Buttons-->
-  <label>
-    <input type="radio" value="low" v-model="newItemPriority" />
-    Baja
-  </label>
 
-  <label>
-    <input type="radio" value="high" v-model="newItemPriority" />
-    Alta
-  </label>
+  <form
+    v-on:submit.prevent="saveItem"
+  >
+    <input v-model="newItem" type="text" placeholder="Agregar un articulo" />
+    <!--Caja de seleccion de Prioridad-->
 
-  <!--Reto form -->
-  <form v-on:submit.prevent="items.push({ id: items.length + 1, label: newItem })" class="add-item fomr"> 
-    <button
-      class="btn btn-primary">
-      Salvar el articulo
-    </button>
+    <label>
+      <input type="checkbox" v-model="newItemHighPriority" />
+      Alta Prioridad
+    </label>
+
+    <!--Boton-->
+    <button class="btn btn-primary">Salvar Articulo</button>
   </form>
 
-  {{ newItemPriority == 'low' ? '🧊' : '🔥' }}
+  {{ newItemHighPriority }}
+  <!-- Lista -->
   <ul>
-    <li v-for="item in items" :key="item.id">🛍️ {{ item.label }}</li>
+    <li v-for="item in items" :key="item.id">𓅓 {{ item.label }}</li>
   </ul>
 </template>
-
-
-
 
 <style scoped>
 .shopping-cart-icon {
