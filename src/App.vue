@@ -4,10 +4,10 @@ const header = ref('App Lista de compras')
 //---items---
 //Item.Model
 const items = ref([
-  { id: 1, label: '1 Nutrileche' },
-  { id: 2, label: '1 Aceite de Bebe' },
-  { id: 3, label: '1 lata de atún' },
-  { id: 4, label: '1 Nutella' }
+  { id: 1, label: '1 Nutrileche' ,purchased: false, priority: true},
+  { id: 2, label: '1 Aceite de Bebe', purchased: true, priority: true},
+  { id: 3, label: '1 lata de atún', purchased: false, priority: false},
+  { id: 4, label: '1 Nutella', purchased: true, priority: true}
 ])
 
 // Items-Method
@@ -51,10 +51,17 @@ const activeteEdition = (activate) => {
     <!-- Boton -->
     <button :disabled="newItem.length===0" class="btn btn-primary">Salvar Articulo</button>
   </form>
+
   <!-- Lista -->
   <ul>
-    <li v-for="{ id, label } in items" v-bind:key="id">𓅓 {{ label }}</li>
+    <li 
+    v-for="{ id, label, purchased, priority } in items" 
+    v-bind:key="id"
+    :class="{strikeout: purchased, priority: priority}" class="amazing"> {{priority ? "🔥": "𓅓"}}  {{ label }}
+    
+    </li>
   </ul>
+
   <p v-if="items.length === 0">🥀 NO HAY ELEMENTOS EN LA LISTA 🥀</p>
 </template>
 
@@ -63,3 +70,5 @@ const activeteEdition = (activate) => {
   font-size: 2rem; /* Adjust the font-size value as per your desired size*/
 }
 </style>
+
+
