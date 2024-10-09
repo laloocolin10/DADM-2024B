@@ -57,8 +57,18 @@ const activeteEdition = (activate) => {
     <li 
     v-for="{ id, label, purchased, priority } in items" 
     v-bind:key="id"
-    :class="{strikeout: purchased, priority: priority}" class="amazing"> {{priority ? "🔥": "𓅓"}}  {{ label }}
-    
+    :class="{strikeout: purchased, priority: priority}" class="amazing"> 
+    {{priority ? "🔥": "𓅓"}}  {{ label }}
+    </li>
+  </ul>
+
+<!--Listas clases como arreglos-->
+<ul>
+    <li 
+    v-for="{ id, label, purchased, priority } in items" 
+    v-bind:key="id"
+    :class="[purchased ? 'strikeout':'', priority ? 'priority':'']" class="amazing"> 
+    {{priority ? "🔥": "𓅓"}}  {{ label }}
     </li>
   </ul>
 
