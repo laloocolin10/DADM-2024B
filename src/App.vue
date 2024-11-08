@@ -17,6 +17,7 @@ import PlanPicker from './PlanPicker.vue';
     </h2>
 
       <PlanPicker />
+
   </div>
 </template>
 
