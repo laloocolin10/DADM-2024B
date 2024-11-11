@@ -1,5 +1,5 @@
 <script setup>
-import PlanPicker from './PlanPicker.vue';
+import PlanPicker from './components/PlanPicker.vue';
 </script>
 <template>
   <header>
