@@ -1,42 +1,45 @@
 <template>
-  <div @click="selectPlan" class="plan">
+  <div @:click="selectPlan" class="plan">
+
     <div class="description">
-      <span class="title">
-        {{ name }} {{ isSelected ? '🌟' : '' }}
-      </span>
+      
+      <span class="title">{{ name }} {{ isSelected ? '✓' : '' }}</span>
+    
     </div>
+  
   </div>
 </template>
 
 <script setup>
-// Importamos la función para crear una propiedad computada
+//importamos la funcion computed de vue para la propiedad computada
 import { computed } from 'vue';
 
-// Definimos las props usando la macro
+//borramos ref
+//defenir las props
+//const props = defineProps(['name','planIcon']);
 const props = defineProps({
-  name: {
-    type: String,
-    required: true
-  },
-  selectedPlan: String // Prop adicional para comparar
-});
+    name: {
+      type: String,
+      required: true
+    },
+    selectPlan: String
+  });
 
-// Definimos los eventos emitidos por el componente
+  //Definir un evento (macro)
 const emit = defineEmits(['select']);
-
-// Función que emite el evento para seleccionar el plan
-const selectPlan = () => {
-  emit('select', props.name);
-};
-
-// Propiedad computada para verificar si el plan ha sido seleccionado
-const isSelected = computed(() => {
-  return props.name === props.selectedPlan;
-});
+ //funcion que permite cambiar el estado de la variable
+  const selectPlan = () => {
+    //Emitir un evento de que el
+    //plan ha sido seleccionado
+    emit('select', props.name);
+  };
+  //creando una propiedad computada 
+  //para saber si el plan ha sido seleccionado
+  const isSelected = computed(() => {
+    return props.name === props.selectPlan;
+  });
 </script>
 
 <style scoped>
-.plan {
-  /* Agrega tus estilos aquí */
-}
+
 </style>
