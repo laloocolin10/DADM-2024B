@@ -158,12 +158,13 @@ canvas {
 template {
   display: none;
 }
-
+/*
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-family: sans-serif;
 }
+  */
 
 *,
 :after,
@@ -738,4 +739,8 @@ a:not(.btn):hover {
 .plans .selected {
   background-color: blueviolet;
   color:white;
+}
+/* codigo de estilo de Slots*/
+html {
+  font-family: sans-serif;
 }

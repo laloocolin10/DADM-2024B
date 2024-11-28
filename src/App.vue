@@ -1,6 +1,7 @@
 <script setup>
 import PlanPicker from './components/PlanPicker.vue';
 import { ref } from 'vue';
+import fancyButton from './components/FancyButton.vue';
 const showPlans = ref(false);
 </script>
 
@@ -24,6 +25,14 @@ const showPlans = ref(false);
 
     <!-- Mostrar PlanPicker solo si showPlans es true -->
     <PlanPicker v-if="showPlans" />
+
+    <!-- leccion slots-->
+    <fancy-button>
+      <template #icon="{ hover }">
+        {{ hover ? "🌟" : "𓅓"}}
+      </template>
+      Hazme Clic
+    </fancy-button>
   </div>
 </template>
 
