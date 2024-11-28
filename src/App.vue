@@ -1,10 +1,13 @@
 <script setup>
 import PlanPicker from './components/PlanPicker.vue';
+import { ref } from 'vue';
+const showPlans = ref(false);
 </script>
+
 <template>
   <header>
     <div style="text-align: center;">
-      <span id="logo">ITGAM BOX EXPERIENCES </span> <br>
+      <span id="logo">Itgam BOX EXPERIENCE</span><br>
       <img src="./assets/logo.png" alt="logo">
     </div>
   </header>
@@ -16,8 +19,11 @@ import PlanPicker from './components/PlanPicker.vue';
       Viajamos por el mundo para encontrar el mejor café de origen único para ti
     </h2>
 
-      <PlanPicker />
+    <!-- Corregido la etiqueta <labe> a <label> -->
+    <label><input type="checkbox" v-model="showPlans"> mostrar selector de planes </label>
 
+    <!-- Mostrar PlanPicker solo si showPlans es true -->
+    <PlanPicker v-if="showPlans" />
   </div>
 </template>
 
